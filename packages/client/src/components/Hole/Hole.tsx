@@ -15,14 +15,30 @@ const STATUS_CLASS: Record<HoleState['status'], string> = {
   revealed_empty: 'hole--revealed-empty',
 };
 
+function Mole({ isRevealed = false }: { isRevealed?: boolean }) {
+  return (
+    <div className={`mole ${isRevealed ? 'mole--revealed' : ''}`}>
+      <div className="mole__inner">
+        <div className="mole__eyes">
+          <div className="mole__eye" />
+          <div className="mole__eye" />
+        </div>
+        <div className="mole__nose" />
+        <div className="mole__mouth" />
+      </div>
+      <div className="mole__cheeks" />
+    </div>
+  );
+}
+
 function HoleIcon({ status }: { status: HoleState['status'] }) {
   switch (status) {
     case 'whacked_mole':
-      return <span className="hole__icon hole__icon--mole">🐹</span>;
+      return <Mole />;
     case 'whacked_empty':
       return <span className="hole__icon hole__icon--miss">✕</span>;
     case 'revealed_mole':
-      return <span className="hole__icon hole__icon--revealed">🐹</span>;
+      return <Mole isRevealed />;
     case 'revealed_empty':
       return <span className="hole__icon hole__icon--revealed">✕</span>;
     default:
