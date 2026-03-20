@@ -1,0 +1,24 @@
+{
+  "name": "hitmous-game",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm run dev -w @hitmous/server",
+    "dev:client": "npm run dev -w @hitmous/client",
+    "build": "npm run build -w @hitmous/shared && npm run build -w @hitmous/server && npm run build -w @hitmous/client",
+    "build:shared": "npm run build -w @hitmous/shared",
+    "build:server": "npm run build -w @hitmous/server",
+    "build:client": "npm run build -w @hitmous/client",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

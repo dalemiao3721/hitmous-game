@@ -190,8 +190,6 @@ sequenceDiagram
 ## 8.1 資料結構範例
 
 ### 📜 註單記錄 (bet_records)
-當玩家在任一面板下注時建立。由於本遊戲支援單局多介面下注，每局遊戲（Session）可對應多筆註單記錄。
-
 ```json
 {
   "betId": "BET-HITMOUS-20260317-P1",

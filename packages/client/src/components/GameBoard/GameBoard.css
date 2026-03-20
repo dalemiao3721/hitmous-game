@@ -1,0 +1,123 @@
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 560px;
+  padding: 32px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.game-board__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.game-board__title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.game-board__title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  background: var(--gradient-title);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.3));
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.game-board__subtitle {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.game-board__status-area {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.game-board__status-text {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-accent-green);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(0, 255, 136, 0.1);
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.game-board__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.game-board__hint {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+/* ===== Mobile / PWA ===== */
+@media (max-width: 768px) {
+  .game-board {
+    max-width: 100%;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .game-board__header {
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .game-board__title {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+
+  .game-board__subtitle {
+    font-size: 0.65rem;
+  }
+
+  .game-board__grid {
+    gap: 10px;
+  }
+
+  .game-board__status-text {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}

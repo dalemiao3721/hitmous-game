@@ -1,0 +1,23 @@
+.jackpot-bar {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+}
+
+.jackpot-bar__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  letter-spacing: 1.5px;
+}
+
+.jackpot-bar__amount {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}

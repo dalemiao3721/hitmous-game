@@ -1,0 +1,52 @@
+:root {
+  /* Backgrounds */
+  --color-bg-primary: #050810;
+  --color-bg-secondary: #0d1120;
+  --color-bg-panel: #0a0d17;
+
+  /* Accents */
+  --color-accent-green: #00ff88;
+  --color-accent-purple: #9d4edd;
+  --color-accent-gold: #ffc300;
+  --color-accent-red: #ff4d6d;
+  --color-accent-blue: #00d4ff;
+
+  /* Text */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #64748b;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 16px;
+
+  /* Borders */
+  --radius-hole: 50%;
+  --radius-card: 24px;
+  --radius-button: 14px;
+
+  /* Animations */
+  --anim-whack-duration: 250ms;
+  --anim-mole-popup: 400ms;
+  --anim-multiplier-bounce: 500ms;
+
+  /* Shadows */
+  --shadow-glow-green: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.2);
+  --shadow-glow-purple: 0 0 25px rgba(157, 78, 221, 0.3), 0 0 50px rgba(157, 78, 221, 0.15);
+  --shadow-glow-gold: 0 0 25px rgba(255, 195, 0, 0.4), 0 0 50px rgba(255, 195, 0, 0.2);
+  --shadow-glow-red: 0 0 30px rgba(255, 77, 109, 0.4), 0 0 60px rgba(255, 77, 109, 0.2);
+
+  /* Deep hole shadows */
+  --shadow-hole-inner: inset 0 12px 24px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0, 0, 0, 0.7);
+  --shadow-hole-gold: inset 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 195, 0, 0.6), 0 0 60px rgba(255, 195, 0, 0.3);
+  --shadow-hole-red: inset 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 77, 109, 0.7), 0 0 70px rgba(255, 77, 109, 0.3);
+
+  /* Title gradient */
+  --gradient-title: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #9d4edd 100%);
+
+  /* Neon glows */
+  --glow-title: 0 0 30px rgba(0, 255, 136, 0.3), 0 0 60px rgba(0, 212, 255, 0.2);
+  --glow-red-strong: 0 0 50px rgba(255, 77, 109, 0.9), 0 0 100px rgba(255, 77, 109, 0.5);
+  --glow-green-strong: 0 0 40px rgba(0, 255, 136, 0.7), 0 0 80px rgba(0, 255, 136, 0.4);
+}
