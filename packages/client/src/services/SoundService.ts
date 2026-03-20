@@ -67,18 +67,24 @@ class SoundService {
 
   playPoint() {
     this.init();
-    const osc = this.ctx!.createOscillator();
-    const gain = this.createGain(0.3, 0.01, 0.3);
+    const startTime = this.ctx!.currentTime;
     
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(880, this.ctx!.currentTime); // A5
-    osc.frequency.exponentialRampToValueAtTime(1320, this.ctx!.currentTime + 0.1); // E6
+    // Cheerful arpeggio (C Major chord)
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
     
-    osc.connect(gain);
-    gain.connect(this.ctx!.destination);
-    
-    osc.start();
-    osc.stop(this.ctx!.currentTime + 0.3);
+    notes.forEach((freq, index) => {
+      const osc = this.ctx!.createOscillator();
+      const gain = this.createGain(0.2, 0.01, 0.2);
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, startTime + index * 0.05);
+      
+      osc.connect(gain);
+      gain.connect(this.ctx!.destination);
+      
+      osc.start(startTime + index * 0.05);
+      osc.stop(startTime + index * 0.05 + 0.2);
+    });
   }
 
   playStart() {
