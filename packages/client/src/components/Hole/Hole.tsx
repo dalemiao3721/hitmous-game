@@ -20,45 +20,91 @@ function Mole({ isRevealed = false }: { isRevealed?: boolean }) {
     <div className={`mole ${isRevealed ? 'mole--revealed' : ''}`}>
       <svg className="mole__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="moleBody" cx="35%" cy="35%" r="60%">
-            <stop offset="0%" stopColor="#8d6e63" />
+          {/* Main Body Gradient */}
+          <radialGradient id="moleBody" cx="40%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#a1887f" />
+            <stop offset="40%" stopColor="#6d4c41" />
             <stop offset="100%" stopColor="#3e2723" />
           </radialGradient>
-          <radialGradient id="moleEar" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#5d4037" />
-            <stop offset="100%" stopColor="#21120f" />
+          
+          {/* Muzzle/Snout Gradient */}
+          <radialGradient id="moleMuzzle" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#d7ccc8" />
+            <stop offset="100%" stopColor="#8d6e63" />
           </radialGradient>
-          <filter id="furTexture">
-            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise" />
-            <feDiffuseLighting in="noise" lightingColor="#fff" surfaceScale="2">
+          
+          {/* Ear Gradient */}
+          <radialGradient id="moleEar" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ff8a80" stopOpacity="0.4" />
+            <stop offset="70%" stopColor="#5d4037" />
+            <stop offset="100%" stopColor="#3e2723" />
+          </radialGradient>
+
+          {/* Fur & Volume Filter */}
+          <filter id="real3d" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.8" specularExponent="20" lightingColor="#ffffff" result="spec">
               <feDistantLight azimuth="45" elevation="45" />
-            </feDiffuseLighting>
-            <feComposite operator="in" in2="SourceGraphic" />
+            </feSpecularLighting>
+            <feComposite in="spec" in2="SourceAlpha" operator="in" result="specOut" />
+            
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" result="noise" />
+            <feColorMatrix in="noise" type="saturate" values="0" result="destat" />
+            <feComponentTransfer in="destat" result="alphaNoise">
+               <feFuncA type="linear" slope="0.3" />
+            </feComponentTransfer>
+            
+            <feMerge>
+              <feMergeNode in="SourceGraphic" />
+              <feMergeNode in="specOut" />
+              <feMergeNode in="alphaNoise" />
+            </feMerge>
           </filter>
+          
+          <clipPath id="moleClip">
+            <path d="M0,0 H100 V85 Q50,95 0,85 Z" />
+          </clipPath>
         </defs>
         
-        {/* Ears */}
-        <circle cx="25" cy="25" r="12" fill="url(#moleEar)" />
-        <circle cx="75" cy="25" r="12" fill="url(#moleEar)" />
-        
-        {/* Body/Head */}
-        <path d="M15,85 C15,35 35,15 50,15 C65,15 85,35 85,85 L15,85" fill="url(#moleBody)" filter="url(#furTexture)" />
-        
-        {/* Face Details */}
-        <g className="mole__face">
-          <circle cx="40" cy="45" r="4" fill="#000" />
-          <circle cx="40" cy="44" r="1.5" fill="#fff" opacity="0.8" />
-          <circle cx="60" cy="45" r="4" fill="#000" />
-          <circle cx="60" cy="44" r="1.5" fill="#fff" opacity="0.8" />
+        <g filter="url(#real3d)">
+          {/* Ears with depth */}
+          <g className="mole__ears">
+            <ellipse cx="28" cy="22" rx="10" ry="12" fill="url(#moleEar)" transform="rotate(-15, 28, 22)" />
+            <ellipse cx="72" cy="22" rx="10" ry="12" fill="url(#moleEar)" transform="rotate(15, 72, 22)" />
+          </g>
           
-          <path d="M45,55 C45,65 55,65 55,55" fill="none" stroke="#21120f" strokeWidth="2" strokeLinecap="round" />
-          <ellipse cx="50" cy="52" rx="6" ry="4" fill="#ff8a80" />
+          {/* Head/Body Shape */}
+          <path d="M12,90 Q12,10 50,10 Q88,10 88,90 L12,90 Z" fill="url(#moleBody)" />
+          
+          {/* Snout/Muzzle Area */}
+          <ellipse cx="50" cy="62" rx="22" ry="18" fill="url(#moleMuzzle)" opacity="0.9" />
+          
+          {/* Eyes with specular highlights */}
+          <g className="mole__eyes">
+            <g transform="translate(38, 42)">
+              <circle r="4.5" fill="#111" />
+              <circle cx="-1.5" cy="-1.5" r="1.5" fill="#fff" />
+            </g>
+            <g transform="translate(62, 42)">
+              <circle r="4.5" fill="#111" />
+              <circle cx="-1.5" cy="-1.5" r="1.5" fill="#fff" />
+            </g>
+          </g>
+          
+          {/* Nose */}
+          <path d="M46,56 Q50,50 54,56 Q54,62 50,60 Q46,62 46,56" fill="#333" />
+          <circle cx="48.5" cy="54.5" r="1" fill="#fff" opacity="0.5" />
           
           {/* Whiskers */}
-          <line x1="35" y1="52" x2="15" y2="48" stroke="#3e2723" strokeWidth="0.5" />
-          <line x1="35" y1="54" x2="15" y2="54" stroke="#3e2723" strokeWidth="0.5" />
-          <line x1="65" y1="52" x2="85" y2="48" stroke="#3e2723" strokeWidth="0.5" />
-          <line x1="65" y1="54" x2="85" y2="54" stroke="#3e2723" strokeWidth="0.5" />
+          <g stroke="#3e2723" strokeWidth="0.4" opacity="0.6">
+            <line x1="32" y1="60" x2="10" y2="58" />
+            <line x1="32" y1="63" x2="8" y2="65" />
+            <line x1="68" y1="60" x2="90" y2="58" />
+            <line x1="68" y1="63" x2="92" y2="65" />
+          </g>
+          
+          {/* Mouth */}
+          <path d="M46,68 Q50,72 54,68" fill="none" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" />
         </g>
       </svg>
     </div>
