@@ -159,15 +159,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'RESET':
       return {
-        ...initialState,
-        balance: state.balance,
-        betAmount: state.betAmount,
-        emptyHoleCount: state.emptyHoleCount,
-        rtpSetting: state.rtpSetting,
-        lobbyMode: state.lobbyMode,
-        lobbyBalance: state.lobbyBalance,
-        lobbyToken: state.lobbyToken,
-        lobbySessionId: state.lobbySessionId,
+        ...state,
+        phase: 'IDLE',
+        sessionId: null,
+        whackedCount: 0,
+        currentMultiplier: 1,
+        nextMultiplier: 0,
+        payout: 0,
+        serverSeedHash: null,
+        serverSeed: null,
+        // holes and layout are preserved to show the previous game result
       };
 
     default:
