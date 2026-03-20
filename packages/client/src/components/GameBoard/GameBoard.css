@@ -56,6 +56,10 @@
 .game-board__status-area {
   flex-shrink: 0;
   text-align: right;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .game-board__status-text {
@@ -116,6 +120,10 @@
     gap: 12px;
     max-width: 440px;
     margin: 0 auto;
+  }
+
+  .game-board__status-area {
+    min-height: 48px;
   }
 
   .game-board__status-text {
