@@ -20,11 +20,11 @@ function Mole({ isRevealed = false }: { isRevealed?: boolean }) {
     <div className={`mole ${isRevealed ? 'mole--revealed' : ''}`}>
       <svg className="mole__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          {/* Main Body Gradient - Brighter Golden Brown */}
+          {/* Main Body Gradient - Bright Brown (Peru-like) */}
           <radialGradient id="moleBody" cx="40%" cy="30%" r="70%">
-            <stop offset="0%" stopColor="#e0c090" />
-            <stop offset="40%" stopColor="#a07040" />
-            <stop offset="100%" stopColor="#5d4037" />
+            <stop offset="0%" stopColor="#f4a460" />
+            <stop offset="40%" stopColor="#cd853f" />
+            <stop offset="100%" stopColor="#8b4513" />
           </radialGradient>
           
           {/* Muzzle/Snout Gradient - Lighter Tan */}
