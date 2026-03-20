@@ -29,7 +29,7 @@
 
 .app__main {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 0 24px 48px;
@@ -42,8 +42,8 @@
 .app__left {
   flex-shrink: 0;
   display: flex;
-  position: sticky;
-  top: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .app__center {
@@ -88,6 +88,7 @@
   .app__main {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 16px;
   }
   
