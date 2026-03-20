@@ -29,7 +29,7 @@
 
 .app__main {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 8px;
   padding: 0 24px 48px;
