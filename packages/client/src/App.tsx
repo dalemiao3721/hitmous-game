@@ -32,16 +32,6 @@ function GameApp() {
     prevPhase.current = state.phase;
   }, [state.phase]);
 
-  const handleStart = useCallback(() => {
-    soundService.playStart();
-    startGame();
-  }, [startGame]);
-
-  const handleCashout = useCallback(() => {
-    soundService.playPoint();
-    cashout();
-  }, [cashout]);
-
   const handleWhack = useCallback((index: number, event?: React.MouseEvent) => {
     if (event) {
       triggerHammer(event.clientX, event.clientY);
@@ -60,8 +50,8 @@ function GameApp() {
           <ControlPanel
             balance={state.balance}
             loading={loading}
-            onStart={handleStart}
-            onCashout={handleCashout}
+            onStart={startGame}
+            onCashout={cashout}
             onReset={reset}
           />
         </div>

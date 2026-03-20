@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import * as api from '../services/api';
 import { useGame } from './useGame';
+import { soundService } from '../services/SoundService';
 
 export function useApi() {
   const {
@@ -36,6 +37,7 @@ export function useApi() {
   }, [state.lobbyMode, state.lobbyToken, setLobbyBalance]);
 
   const startGame = useCallback(async () => {
+    soundService.playStart();
     setLoading(true);
     setError(null);
     try {
@@ -62,16 +64,20 @@ export function useApi() {
 
   const whack = useCallback(async (holeIndex: number) => {
     if (!state.sessionId) return;
+    soundService.playHit();
     setLoading(true);
     setError(null);
     try {
       const res = await api.whack({ sessionId: state.sessionId, holeIndex });
       if (res.result === 'mole') {
+        soundService.playPoint();
         whackResultMole(res.holeIndex, res.currentMultiplier, res.nextMultiplier);
       } else if (res.result === 'full_clear') {
+        soundService.playPoint();
         fullClearSuccess(res.holeIndex, res.payout, res.currentMultiplier, res.serverSeed, res.layout);
         await refreshLobbyBalance();
       } else {
+        soundService.playMiss();
         whackResultEmpty(res.holeIndex, res.serverSeed, res.layout);
         // Refresh lobby balance after loss
         await refreshLobbyBalance();
@@ -85,6 +91,7 @@ export function useApi() {
 
   const doCashout = useCallback(async () => {
     if (!state.sessionId) return;
+    soundService.playPoint();
     setLoading(true);
     setError(null);
     try {
