@@ -20,31 +20,31 @@ function Mole({ isRevealed = false }: { isRevealed?: boolean }) {
     <div className={`mole ${isRevealed ? 'mole--revealed' : ''}`}>
       <svg className="mole__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          {/* Main Body Gradient */}
+          {/* Main Body Gradient - Brighter Golden Brown */}
           <radialGradient id="moleBody" cx="40%" cy="30%" r="70%">
-            <stop offset="0%" stopColor="#a1887f" />
-            <stop offset="40%" stopColor="#6d4c41" />
-            <stop offset="100%" stopColor="#3e2723" />
+            <stop offset="0%" stopColor="#e0c090" />
+            <stop offset="40%" stopColor="#a07040" />
+            <stop offset="100%" stopColor="#5d4037" />
           </radialGradient>
           
-          {/* Muzzle/Snout Gradient */}
+          {/* Muzzle/Snout Gradient - Lighter Tan */}
           <radialGradient id="moleMuzzle" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#d7ccc8" />
-            <stop offset="100%" stopColor="#8d6e63" />
+            <stop offset="0%" stopColor="#f8f0e0" />
+            <stop offset="100%" stopColor="#cbb194" />
           </radialGradient>
           
-          {/* Ear Gradient */}
+          {/* Ear Gradient - More Vibrant Inner Pink */}
           <radialGradient id="moleEar" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ff8a80" stopOpacity="0.4" />
-            <stop offset="70%" stopColor="#5d4037" />
-            <stop offset="100%" stopColor="#3e2723" />
+            <stop offset="0%" stopColor="#ff9e9e" stopOpacity="0.6" />
+            <stop offset="70%" stopColor="#8d6e63" />
+            <stop offset="100%" stopColor="#5d4037" />
           </radialGradient>
 
-          {/* Fur & Volume Filter */}
+          {/* Fur & Volume Filter - Stronger Highlights */}
           <filter id="real3d" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
-            <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.8" specularExponent="20" lightingColor="#ffffff" result="spec">
-              <feDistantLight azimuth="45" elevation="45" />
+            <feSpecularLighting in="blur" surfaceScale="6" specularConstant="1.2" specularExponent="25" lightingColor="#ffffff" result="spec">
+              <feDistantLight azimuth="45" elevation="55" />
             </feSpecularLighting>
             <feComposite in="spec" in2="SourceAlpha" operator="in" result="specOut" />
             
