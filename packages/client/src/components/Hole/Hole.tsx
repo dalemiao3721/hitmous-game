@@ -104,6 +104,12 @@ function Mole({ isRevealed = false }: { isRevealed?: boolean }) {
             <ellipse rx="8" ry="5" fill="#21100e" />
             <ellipse cx="-2" cy="-1.5" rx="2.5" ry="1.2" fill="#fff" opacity="0.2" />
           </g>
+
+          {/* Teeth - Two cute buck teeth */}
+          <g transform="translate(46, 64)">
+            <rect x="0" y="0" width="3.5" height="5" rx="1" fill="#f5f5dc" stroke="#d2b48c" strokeWidth="0.5" />
+            <rect x="4.5" y="0" width="3.5" height="5" rx="1" fill="#f5f5dc" stroke="#d2b48c" strokeWidth="0.5" />
+          </g>
           
           {/* Whiskers - Hand-drawn feel */}
           <g stroke="#21100e" strokeWidth="0.5" opacity="0.6">
