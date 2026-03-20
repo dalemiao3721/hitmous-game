@@ -224,9 +224,11 @@
 @media (max-width: 768px) {
   .control-panel {
     width: 100%;
-    padding: 10px 12px;
-    gap: 6px;
-    border-radius: 12px;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    gap: 8px;
+    border-radius: 16px;
   }
 
   .control-panel__section {

@@ -113,7 +113,9 @@
   }
 
   .game-board__grid {
-    gap: 10px;
+    gap: 12px;
+    max-width: 440px;
+    margin: 0 auto;
   }
 
   .game-board__status-text {
