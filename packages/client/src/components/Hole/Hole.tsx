@@ -1,4 +1,6 @@
+import { useEffect, useRef } from 'react';
 import type { HoleState } from '@hitmous/shared';
+import { soundService } from '../../services/SoundService';
 import './Hole.css';
 
 interface HoleProps {

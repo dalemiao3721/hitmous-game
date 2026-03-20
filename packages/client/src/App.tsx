@@ -1,7 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { GameProvider } from './context/GameContext';
 import { useApi } from './hooks/useApi';
 import { useGame } from './hooks/useGame';
+import { soundService } from './services/SoundService';
 // import { JackpotBar } from './components/JackpotBar/JackpotBar'; // TODO: re-enable when Jackpot is implemented
 import { ControlPanel } from './components/ControlPanel/ControlPanel';
 import { GameBoard } from './components/GameBoard/GameBoard';
@@ -21,6 +22,25 @@ function GameApp() {
   const { startGame, whack, cashout, loading, error } = useApi();
   const { state, reset } = useGame();
   const { effects, triggerHammer } = useHammerEffect();
+  const prevPhase = useRef(state.phase);
+
+  useEffect(() => {
+    if (state.phase === prevPhase.current) return;
+    if (state.phase === 'GAME_OVER') {
+      soundService.playGameOver();
+    }
+    prevPhase.current = state.phase;
+  }, [state.phase]);
+
+  const handleStart = useCallback(() => {
+    soundService.playStart();
+    startGame();
+  }, [startGame]);
+
+  const handleCashout = useCallback(() => {
+    soundService.playPoint();
+    cashout();
+  }, [cashout]);
 
   const handleWhack = useCallback((index: number, event?: React.MouseEvent) => {
     if (event) {
@@ -40,8 +60,8 @@ function GameApp() {
           <ControlPanel
             balance={state.balance}
             loading={loading}
-            onStart={startGame}
-            onCashout={cashout}
+            onStart={handleStart}
+            onCashout={handleCashout}
             onReset={reset}
           />
         </div>
